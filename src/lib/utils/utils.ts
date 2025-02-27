@@ -91,14 +91,14 @@ export async function parseLLMResponse(responseString: string) {
     try {
       // Look for JSON pattern within the string (anything between { and })
       const jsonMatch = responseString.match(/\{[\s\S]*\}/);
-      
+
       if (!jsonMatch) {
         throw new Error('No JSON object found in response');
       }
-      
+
       // Parse the matched JSON string
       const jsonData = JSON.parse(jsonMatch[0]);
-      
+
       // Validate the structure
       if (
         typeof jsonData.score === 'undefined' ||
@@ -107,7 +107,7 @@ export async function parseLLMResponse(responseString: string) {
       ) {
         throw new Error('Invalid JSON structure');
       }
-      
+
       return {
         score: jsonData.score,
         positives: jsonData.positives,

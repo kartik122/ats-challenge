@@ -4,7 +4,7 @@ export default function DocumentationPage() {
   return (
     <div className="container mx-auto py-8 px-4 max-w-4xl">
       <h1 className="text-4xl font-bold mb-8">Documentation</h1>
-      
+
       <div className="space-y-8">
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">Getting Started</h2>

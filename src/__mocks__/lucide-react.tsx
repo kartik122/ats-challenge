@@ -17,5 +17,5 @@ export const Loader2 = IconMock;
 export const AlertCircle = IconMock;
 export const Trash2 = IconMock;
 export const LineChart = IconMock;
-export const Trophy = IconMock;  
-export const BarChart2 = IconMock; 
+export const Trophy = IconMock;
+export const BarChart2 = IconMock;

@@ -14,9 +14,9 @@ export default function JobBoard() {
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
     const [showResumePopup, setShowResumePopup] = useState(false);
-    
+
     useEffect(() => {
-        
+
         setLoading(true);
         const fetchJobData = async () => {
             const jobData: JobData = await getJobData();
@@ -28,7 +28,7 @@ export default function JobBoard() {
 
     return (
         <div className="container mx-auto py-8 px-4">
-        <div className="flex flex-col min-h-screen">  
+        <div className="flex flex-col min-h-screen">
             <div className="flex items-center mb-8">
                 <Button
                 variant="ghost"
@@ -38,7 +38,7 @@ export default function JobBoard() {
                     <ArrowLeft className="h-4 w-4 mr-2" />
                         Back to Jobs
                     </Button>
-            </div>       
+            </div>
             <MovableResumePopup onClose={() => setShowResumePopup(false)}/>
             <main className="flex-1 container mx-auto px-4 py-12 max-w-6xl">
                 <div className="flex flex-col items-center text-center mb-12">
@@ -55,9 +55,9 @@ export default function JobBoard() {
                 ) : (
                     <div className="space-y-6">
                         {jobData?.jobRoles.map((role) => (
-                            <JobRoleCard 
-                                key={role.id} 
-                                role={role} 
+                            <JobRoleCard
+                                key={role.id}
+                                role={role}
                             />
                         ))}
                     </div>

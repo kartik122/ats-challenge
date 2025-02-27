@@ -10,7 +10,7 @@ import fs from "fs";
 export const getJobData = async (): Promise<JobData> =>  {
     try {
       const filePath = path.join(process.cwd(), 'data', 'resources.json');
-      
+
       const fileContents = await fs.promises.readFile(filePath, 'utf8');
       return JSON.parse(fileContents) as JobData;
     } catch (error) {
@@ -18,7 +18,7 @@ export const getJobData = async (): Promise<JobData> =>  {
       return { jobRoles: [] };
     }
   }
-  
+
 /**
   This function takes an id as a parameter and returns the job role with the matching id.
   @param id - The id of the job role to be returned.

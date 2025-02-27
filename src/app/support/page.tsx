@@ -8,14 +8,14 @@ export default function SupportPage() {
   return (
     <div className="container mx-auto py-8 px-4 max-w-2xl">
       <h1 className="text-4xl font-bold mb-8">Support</h1>
-      
+
       <div className="space-y-8">
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">Contact Us</h2>
           <p className="text-muted-foreground">
-            Having issues or questions? Fill out the form below and we'll get back to you as soon as possible.
+            Having issues or questions? Fill out the form below and we&apos;ll get back to you as soon as possible.
           </p>
-          
+
           <form className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium">
@@ -27,7 +27,7 @@ export default function SupportPage() {
                 placeholder="your@email.com"
               />
             </div>
-            
+
             <div className="space-y-2">
               <label htmlFor="subject" className="text-sm font-medium">
                 Subject
@@ -38,7 +38,7 @@ export default function SupportPage() {
                 placeholder="What's your issue about?"
               />
             </div>
-            
+
             <div className="space-y-2">
               <label htmlFor="message" className="text-sm font-medium">
                 Message
@@ -49,7 +49,7 @@ export default function SupportPage() {
                 className="min-h-[150px]"
               />
             </div>
-            
+
             <Button className="w-full">Send Message</Button>
           </form>
         </section>

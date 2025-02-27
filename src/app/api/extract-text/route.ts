@@ -7,7 +7,6 @@ export async function POST(request: NextRequest) {
     }
     const formData = await request.formData();
     const file = formData.get("file") as File;
-    // console.log("FILE = ", file)
     try {
         const result = await parseDocument(file);
         return NextResponse.json(result, { status: 200 });

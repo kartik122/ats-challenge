@@ -30,24 +30,24 @@ export const useUserStore = create<UserStore>()(
       currentCv: null,
       setCurrentCv: (cv) => set({ currentCv: cv }),
       cvFiles: [],
-      
+
       // Add a new CV
-      addCV: (cv) => set((state) => ({ 
-        cvFiles: [...state.cvFiles, cv] 
+      addCV: (cv) => set((state) => ({
+        cvFiles: [...state.cvFiles, cv]
       })),
-      
+
       // Remove a CV by ID
-      removeCV: (id) => set((state) => ({ 
-        cvFiles: state.cvFiles.filter(file => file.id !== id) 
+      removeCV: (id) => set((state) => ({
+        cvFiles: state.cvFiles.filter(file => file.id !== id)
       })),
-      
+
       // Update a CV
       updateCV: (id, updatedData) => set((state) => ({
-        cvFiles: state.cvFiles.map(file => 
+        cvFiles: state.cvFiles.map(file =>
           file.id === id ? { ...file, ...updatedData } : file
         )
       })),
-      
+
       // Clear all CVs
       clearCVs: () => set({ cvFiles: [] }),
     }),

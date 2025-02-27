@@ -21,15 +21,15 @@ describe('Header Component', () => {
 
   it('toggles mobile menu when hamburger button is clicked', () => {
     render(<Header />);
-    const menuButton = screen.getByRole('button', { 
+    const menuButton = screen.getByRole('button', {
       name: /toggle menu/i
     });
 
     fireEvent.click(menuButton);
-    
+
     expect(screen.getByText('CV Manager')).toBeInTheDocument();
-    expect(screen.getByText('Documentation', { 
-      selector: '.md\\:hidden a' 
+    expect(screen.getByText('Documentation', {
+      selector: '.md\\:hidden a'
     })).toBeInTheDocument();
   });
 

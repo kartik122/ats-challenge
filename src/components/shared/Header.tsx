@@ -35,7 +35,7 @@ const Header: FC = () => {
             </Link>
           </div>
 
-          <button 
+          <button
             className="md:hidden text-gray-700"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"

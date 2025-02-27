@@ -57,7 +57,7 @@ export default function LeaderboardPage() {
     if (!metrics || metrics.length < 4) return 0;
     const weights = [0.4, 0.3, 0.2, 0.1];
     return Math.round(
-      metrics.reduce((sum, metric, index) => 
+      metrics.reduce((sum, metric, index) =>
         sum + (metric.score / 25) * 100 * weights[index], 0)
     );
   };

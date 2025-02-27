@@ -30,7 +30,7 @@ const ResumeScorePopup = ({ analysisResults }: { analysisResults: analysisMetric
 
   const calculateWeightedScore = () => {
     if (!analysisResults || analysisResults.length < 4) return 0;
-    
+
     // Map each result to its appropriate weight
     const weightedScores = [
       analysisResults[0].score * WEIGHT_FACTORS.SKILLS,
@@ -38,7 +38,7 @@ const ResumeScorePopup = ({ analysisResults }: { analysisResults: analysisMetric
       analysisResults[2].score * WEIGHT_FACTORS.EDUCATION,
       analysisResults[3].score * WEIGHT_FACTORS.SOFT_SKILLS
     ];
-    
+
     // Sum the weighted scores and normalize to a 0-100 scale
     // Assuming the input scores are on a scale of 1-20
     const totalWeightedScore = weightedScores.reduce((sum, score) => sum + score, 0);
@@ -87,15 +87,15 @@ const ResumeScorePopup = ({ analysisResults }: { analysisResults: analysisMetric
               <span>Overall Match Score</span>
               <span className={getScoreColor(weightedScore)}>{weightedScore}%</span>
             </div>
-            <Progress 
-              value={weightedScore} 
-              className="h-2" 
+            <Progress
+              value={weightedScore}
+              className="h-2"
             />
           </div>
 
           <div className="space-y-4">
             {analysisResults?.map((result, index) => (
-              <Collapsible 
+              <Collapsible
                 key={index}
                 open={openSection === index}
                 onOpenChange={() => setOpenSection(openSection === index ? null : index)}
@@ -114,7 +114,7 @@ const ResumeScorePopup = ({ analysisResults }: { analysisResults: analysisMetric
                     <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${openSection === index ? "rotate-180" : ""}`} />
                   </div>
                 </CollapsibleTrigger>
-                
+
                 <CollapsibleContent className="p-4 space-y-4">
                   <div className="space-y-2">
                     <h4 className="font-medium flex items-center">
@@ -130,7 +130,7 @@ const ResumeScorePopup = ({ analysisResults }: { analysisResults: analysisMetric
                       ))}
                     </ul>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <h4 className="font-medium flex items-center">
                       <XCircle className="h-4 w-4 text-red-500 mr-2" />

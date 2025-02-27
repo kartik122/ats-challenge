@@ -47,7 +47,7 @@ export const JobRoleCard = ({ role }: JobRoleCardProps) => {
     addCVMetrics(currentCv.id + ":" + role.id, data);
     setLoading(false);
   };
-  
+
   return (
     <>
     <Card className="flex flex-col items-center text-center p-2" key={role.id}>
@@ -81,10 +81,10 @@ export const JobRoleCard = ({ role }: JobRoleCardProps) => {
       {/* <CardContent>
       </CardContent>  */}
     </Card>
-    {currentCv && cvMetrics[currentCv.id +":"+role.id] && 
+    {currentCv && cvMetrics[currentCv.id +":"+role.id] &&
         <div className="flex flex-col sm:flex-row gap-2 mt-4 w-full px-4">
           <ResumeScorePopup analysisResults={cvMetrics[currentCv.id +":"+role.id]} />
-          <Button 
+          <Button
                 variant="outline"
                 className="w-full mt-2"
                 onClick={() => router.push(`/leaderboard/${role.id}`)}

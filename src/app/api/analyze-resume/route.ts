@@ -13,8 +13,8 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(result, { status: 200 });
     } catch (error: unknown) {
         console.error(error);
-        return NextResponse.json({ 
-            error: error instanceof Error ? error.message : 'An unknown error occurred' 
+        return NextResponse.json({
+            error: error instanceof Error ? error.message : 'An unknown error occurred'
         }, { status: 500 });
     }
 }

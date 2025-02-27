@@ -16,7 +16,7 @@ const MovableResumePopup = ({ onClose }) => {
   const [position, setPosition] = useState({ x: 100, y: 100 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-  
+
   const popupRef = useRef(null);
 
   // Handle drag start
@@ -30,7 +30,7 @@ const MovableResumePopup = ({ onClose }) => {
       });
     }
   };
-  
+
   const handleMouseMove = (e) => {
     if (isDragging) {
       setPosition({
@@ -39,16 +39,16 @@ const MovableResumePopup = ({ onClose }) => {
       });
     }
   };
-  
+
   const handleMouseUp = () => {
     setIsDragging(false);
   };
-  
+
   const handleResumeChange = (value) => {
     const cv = cvFiles.find(cv => cv.id === value) ?? null;
     setCurrentCv(cv);
   };
-  
+
   useEffect(() => {
     if(cvFiles.length > 0) {
       setCurrentCv(cvFiles[0]);
@@ -59,21 +59,21 @@ const MovableResumePopup = ({ onClose }) => {
   useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
-    
+
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
   }, [isDragging, dragOffset]);
-  
+
   return (
     <div
       ref={popupRef}
       className="fixed shadow-xl rounded-lg z-50 w-96 max-h-[80vh] bg-background border"
-      style={{ 
-        left: `${position.x}px`, 
+      style={{
+        left: `${position.x}px`,
         top: `${position.y}px`,
-        cursor: isDragging ? 'grabbing' : 'default' 
+        cursor: isDragging ? 'grabbing' : 'default'
       }}
       onMouseDown={handleMouseDown}
     >
@@ -89,7 +89,7 @@ const MovableResumePopup = ({ onClose }) => {
             </Button>
           </div>
         </CardHeader>
-        
+
         <div className="p-4 pt-0 border-t">
           <Select value={currentCv?.id} onValueChange={handleResumeChange}>
             <SelectTrigger className="w-full mb-4">
@@ -107,7 +107,7 @@ const MovableResumePopup = ({ onClose }) => {
             </SelectContent>
           </Select>
         </div>
-        
+
         <CardContent className="p-4 pt-0 max-h-[60vh] overflow-y-auto">
           {currentCv ? (
             <div className="space-y-4">

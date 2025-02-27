@@ -22,17 +22,17 @@ const CVUpload: NextPage = () => {
   const [uploading, setUploading] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
   const [uploadError, setUploadError] = useState<string | null>(null);
-  
+
   const { cvFiles, addCV, removeCV } = useUserStore();
 
   const onDrop = async (acceptedFiles: File[]) => {
     setUploading(true);
     setUploadError(null);
-    
+
     try {
       const totalFiles = acceptedFiles.length;
       let processedFiles = 0;
-      
+
       for (const file of acceptedFiles) {
         if (!/\.(pdf|docx|txt)$/i.test(file.name)) {
           throw new Error(`Invalid file type: ${file.name}. Only PDF, DOCX, and TXT files are allowed.`);
@@ -45,7 +45,7 @@ const CVUpload: NextPage = () => {
             body: formData
         })
         const parsedContent = await data.text();
-        
+
         addCV({
           id: Date.now() + Math.random().toString(36).substring(2),
           name: file.name,
@@ -55,11 +55,11 @@ const CVUpload: NextPage = () => {
           content: parsedContent,
           uploadDate: new Date().toISOString()
         });
-        
+
         processedFiles++;
         setProgress(Math.round((processedFiles / totalFiles) * 100));
       }
-      
+
       toast({
         title: "Upload Successful",
         description: `${acceptedFiles.length} CV${acceptedFiles.length > 1 ? 's' : ''} uploaded successfully.`,
@@ -76,7 +76,7 @@ const CVUpload: NextPage = () => {
       setProgress(0);
     }
   };
-  
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
@@ -87,13 +87,13 @@ const CVUpload: NextPage = () => {
     disabled: uploading,
     multiple: true
   });
-  
+
   const formatFileSize = (bytes: number): string => {
     if (bytes < 1024) return bytes + ' B';
     else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
     else return (bytes / 1048576).toFixed(1) + ' MB';
   };
-  
+
   const getFileIcon = (fileType: string): string => {
     if (fileType.includes('pdf')) return '📄';
     if (fileType.includes('docx')) return '📝';
@@ -106,7 +106,7 @@ const CVUpload: NextPage = () => {
       <Header />
       <div className="container mx-auto py-10 px-4">
         <h1 className="text-3xl font-bold mb-6">CV Manager</h1>
-        
+
         <div className="grid gap-6 md:grid-cols-2">
           <Card>
             <CardHeader>
@@ -116,8 +116,8 @@ const CVUpload: NextPage = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div 
-                {...getRootProps()} 
+              <div
+                {...getRootProps()}
                 className={`border-2 border-dashed rounded-lg p-10 text-center cursor-pointer transition-colors ${
                   isDragActive ? 'border-primary bg-primary/10' : 'border-gray-300 hover:border-primary'
                 }`}
@@ -139,7 +139,7 @@ const CVUpload: NextPage = () => {
                   <Progress value={progress} className="h-2" />
                 </div>
               )}
-              
+
               {uploadError && (
                 <Alert variant="destructive" className="mt-4">
                   <AlertCircle className="h-4 w-4" />
@@ -148,13 +148,13 @@ const CVUpload: NextPage = () => {
               )}
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>My CVs</CardTitle>
               <CardDescription>
-                {cvFiles.length === 0 
-                  ? "No CVs uploaded yet" 
+                {cvFiles.length === 0
+                  ? "No CVs uploaded yet"
                   : `${cvFiles.length} CV${cvFiles.length > 1 ? 's' : ''} uploaded`}
               </CardDescription>
             </CardHeader>
@@ -180,9 +180,9 @@ const CVUpload: NextPage = () => {
                       {/* <Badge variant="outline" className="ml-2">
                         {file.contentType.toUpperCase()}
                       </Badge> */}
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
+                      <Button
+                        variant="ghost"
+                        size="icon"
                         className="ml-2 text-gray-500 hover:text-red-500"
                         onClick={() => {
                           removeCV(file.id);
@@ -212,8 +212,8 @@ const CVUpload: NextPage = () => {
           </Card>
         </div>
         <div className='flex items-center justify-center m-5'>
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           size="lg"
           onClick={() => {
             router.push('/job-board')
