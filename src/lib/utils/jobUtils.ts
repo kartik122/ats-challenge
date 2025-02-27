@@ -1,7 +1,6 @@
 "use server";
 import { JobData, JobRole } from "@/lib/types/job";
-import path from "path";
-import fs from "fs";
+import { jobRoles } from "@/lib/constants/jobRoles"; 
 
 /**
   This function reads the resources.json file and returns the job roles as an array of objects.
@@ -9,10 +8,7 @@ import fs from "fs";
 */
 export const getJobData = async (): Promise<JobData> =>  {
     try {
-      const filePath = './data/resources.json';
-
-      const fileContents = await fs.promises.readFile(filePath, 'utf8');
-      return JSON.parse(fileContents) as JobData;
+      return jobRoles;
     } catch (error) {
       console.error('Error loading job data:', error);
       return { jobRoles: [] };
