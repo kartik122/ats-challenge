@@ -9,7 +9,7 @@ import fs from "fs";
 */
 export const getJobData = async (): Promise<JobData> =>  {
     try {
-      const filePath = 'data/resources.json';
+      const filePath = './data/resources.json';
 
       const fileContents = await fs.promises.readFile(filePath, 'utf8');
       return JSON.parse(fileContents) as JobData;
