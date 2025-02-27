@@ -21,8 +21,7 @@ const eslintConfig = [
         "plugin:react-hooks/recommended",
         "plugin:@next/next/recommended",
         "next",
-        "prettier",
-        "plugin:prettier/recommended",
+        "prettier"  // Remove plugin:prettier/recommended
     ),
     ...compat.plugins("@typescript-eslint", "react", "react-hooks"),
     ...compat.config({
