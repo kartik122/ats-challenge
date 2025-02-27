@@ -19,13 +19,21 @@ interface JobRoleCardProps {
 export const JobRoleCard = ({ role }: JobRoleCardProps) => {
   const [selectedLLM, setSelectedLLM] = useState("openai");
   const [loading, setLoading] = useState<boolean>(false);
-  const [isExpanded, setIsExpanded] = useState(false);
   const { cvMetrics, addCVMetrics } = useCVMetricsStore();
-  const { currentCv } = useUserStore();
+  const { currentCv, cvFiles } = useUserStore();
   const { toast } = useToast();
   const router = useRouter();
 
   const handleAnalyze = async () => {
+    if (cvFiles.length === 0) {
+      toast({
+        variant: "destructive",
+        title: "No Resume Found",
+        description: "Please upload a resume first to analyze",
+      });
+      router.push('/upload');
+      return;
+    }
     setLoading(true);
     if(!currentCv) {
         toast({

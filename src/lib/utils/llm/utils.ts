@@ -33,7 +33,7 @@ export const createLLM = (llmType: string) => {
 
 export const analyzePipeline = async ({cvContent, jobInfo, llm}: analyzePipelineParams): Promise<analysisMetrics[]> => {
     const messages = [
-        {role: 'system', content: 'You are a very harsh hiring manager, that will score and analyze a CV based on the job requirements and the CV content.'},
+        {role: 'system', content: 'You are a very strong critique and hiring manager, that will score and analyze a CV based on the job requirements and the CV content.'},
     ]
     const matchResults = await Promise.all(
         matchingCriteria.map(async (criteria) => {
