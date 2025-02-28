@@ -1,9 +1,7 @@
 import React from 'react';
 
-// Create a mock component for all Lucide icons
 const IconMock = () => <div data-testid="mock-icon" />;
 
-// Export common icons used in your components
 export const FileText = IconMock;
 export const Menu = IconMock;
 export const X = IconMock;

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { ChevronDown, Building2, MapPin } from "lucide-react";
+import { ChevronDown, } from "lucide-react";
 import { JobRole } from '@/lib/types/job';
 import { useCVMetricsStore, useUserStore } from '@/store';
 import ResumeScorePopup from './ResumeScoreAnalysis';
@@ -58,36 +58,46 @@ export const JobRoleCard = ({ role }: JobRoleCardProps) => {
 
   return (
     <>
-    <Card className="flex flex-col items-center text-center p-2" key={role.id}>
-      <CardHeader>
+    <Card className="flex flex-col items-center text-center p-2 max-w-2xl mx-auto" key={role.id}>
+      <CardHeader className="w-full">
         <CardTitle>{role.title}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="w-full">
         <CardDescription className="text-base">
           {role.description}
         </CardDescription>
       </CardContent>
-      <div className="flex flex-col sm:flex-row gap-2 mt-4 w-full px-4">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="flex-1 justify-between">
-              {selectedLLM === "openai" ? "OpenAI" : "Claude"}
-              <ChevronDown className="h-4 w-4 ml-2 opacity-70" />
+      <div className="flex flex-col sm:flex-row items-center gap-4 mt-4 w-full px-4 justify-between">
+        <div className="w-[200px]">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="w-full">
+                <span className="flex items-center justify-between w-full">
+                  {selectedLLM === "openai" ? "OpenAI" : "Claude"}
+                  <ChevronDown className="h-4 w-4 ml-2 opacity-70" />
+                </span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-[200px]">
+              <DropdownMenuItem onClick={() => setSelectedLLM("openai")}>
+                OpenAI
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setSelectedLLM("claude")}>
+                Claude
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+        <div className="w-[200px]">
+          {!!loading ? (
+            <AnalysisLoader />
+          ) : (
+            <Button className="w-full h-10" onClick={() => handleAnalyze()}>
+              Analyse CV
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem onClick={() => setSelectedLLM("openai")}>
-              OpenAI
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setSelectedLLM("claude")}>
-              Claude
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        {!!loading ? <AnalysisLoader /> : <Button className="flex-1" onClick={() => handleAnalyze()}>Analyse CV</Button>}
+          )}
+        </div>
       </div>
-      {/* <CardContent>
-      </CardContent>  */}
     </Card>
     {currentCv && cvMetrics[currentCv.id +":"+role.id] &&
         <div className="flex flex-col sm:flex-row gap-2 mt-4 w-full px-4">

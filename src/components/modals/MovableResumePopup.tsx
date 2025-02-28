@@ -11,11 +11,25 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useUserStore } from '@/store'; // Update this import path as needed
 
-const MovableResumePopup = ({ onClose }) => {
+export const MovableResumePopup = ({ onClose }) => {
   const { cvFiles, currentCv, setCurrentCv } = useUserStore();
-  const [position, setPosition] = useState({ x: 100, y: 100 });
+  // Update initial position to be on the right
+  const [position, setPosition] = useState({ x: window.innerWidth - 400, y: 100 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  
+  // Add useEffect to handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setPosition(prev => ({
+        ...prev,
+        x: Math.min(prev.x, window.innerWidth - 400)
+      }));
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const popupRef = useRef(null);
 

@@ -36,7 +36,7 @@ export default function JobBoard() {
                 onClick={() => router.push('/upload')}
                 >
                     <ArrowLeft className="h-4 w-4 mr-2" />
-                        Back to Jobs
+                        Back to upload
                     </Button>
             </div>
             <MovableResumePopup onClose={() => setShowResumePopup(false)}/>
