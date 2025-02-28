@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { Card, CardHeader } from "@/components/ui/card";
 import { getJobById } from '@/lib/utils/jobUtils';
 import { useCVMetricsStore, useUserStore } from '@/store';
@@ -10,8 +10,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { ChevronDown } from 'lucide-react';
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { BackButton } from '@/components/shared/BackButton';
 
 interface CandidateScore {
   id: string;
@@ -20,7 +19,6 @@ interface CandidateScore {
 }
 
 export default function LeaderboardPage() {
-  const router = useRouter();
   const params = useParams();
   const [job, setJob] = useState<JobRole | null>(null);
   const [candidates, setCandidates] = useState<CandidateScore[]>([]);
@@ -76,17 +74,7 @@ export default function LeaderboardPage() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="flex items-center mb-8">
-        <Button
-          variant="ghost"
-          className="mr-4"
-          onClick={() => router.push('/job-board')}
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Jobs
-        </Button>
-      </div>
-
+      <BackButton pageRef={"job-board"} title={"Job Board"} />
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">{job?.title} - Candidate Rankings</h1>
         <p className="text-muted-foreground">

@@ -33,7 +33,7 @@ export const createLLM = (llmType: string) => {
 
 export const analyzePipeline = async ({cvContent, jobInfo, llm}: analyzePipelineParams): Promise<analysisMetrics[]> => {
     const messages = [
-        {role: 'system', content: 'You are a critique and hiring manager for blue collar job resumes in Australia, that will score and analyze a CV based on the job requirements and the CV content.'},
+        {role: 'system', content: 'You are a hiring manager for blue collar job resumes in Australia, that will score and analyze a CV based on the job requirements and the CV content. Judge the CV based on the criteria, if you judge it to align with the criteria more than 50%, give a higher score. Only judge on what aligns with the job role.'},
     ]
     const matchResults = await Promise.all(
         matchingCriteria.map(async (criteria) => {

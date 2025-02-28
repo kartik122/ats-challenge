@@ -16,13 +16,13 @@ export const MovableResumePopup = ({ onClose }) => {
   const [position, setPosition] = useState({ x: 0, y: 100 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-  
+
   // Initialize position after mount
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setPosition({ 
-        x: window.innerWidth - 400, 
-        y: 100 
+      setPosition({
+        x: window.innerWidth - 400,
+        y: 100
       });
 
       const handleResize = () => {

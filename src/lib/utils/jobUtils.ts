@@ -1,6 +1,6 @@
 "use server";
 import { JobData, JobRole } from "@/lib/types/job";
-import { jobRoles } from "@/lib/constants/jobRoles"; 
+import { jobRoles } from "@/lib/constants/jobRoles";
 
 /**
   This function reads the resources.json file and returns the job roles as an array of objects.

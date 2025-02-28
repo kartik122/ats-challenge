@@ -8,6 +8,7 @@ import MovableResumePopup from "@/components/modals/MovableResumePopup";
 import { JobRoleCard } from "@/components/job/JobRoleCard";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { BackButton } from "@/components/shared/BackButton";
 
 export default function JobBoard() {
     const [jobData, setJobData] = useState<JobData>();
@@ -29,16 +30,7 @@ export default function JobBoard() {
     return (
         <div className="container mx-auto py-8 px-4">
         <div className="flex flex-col min-h-screen">
-            <div className="flex items-center mb-8">
-                <Button
-                variant="ghost"
-                className="mr-4"
-                onClick={() => router.push('/upload')}
-                >
-                    <ArrowLeft className="h-4 w-4 mr-2" />
-                        Back to upload
-                    </Button>
-            </div>
+            <BackButton pageRef={"upload"} title={"upload"} />
             <MovableResumePopup onClose={() => setShowResumePopup(false)}/>
             <main className="flex-1 container mx-auto px-4 py-12 max-w-6xl">
                 <div className="flex flex-col items-center text-center mb-12">
