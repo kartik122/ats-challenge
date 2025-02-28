@@ -13,22 +13,28 @@ import { useUserStore } from '@/store'; // Update this import path as needed
 
 export const MovableResumePopup = ({ onClose }) => {
   const { cvFiles, currentCv, setCurrentCv } = useUserStore();
-  // Update initial position to be on the right
-  const [position, setPosition] = useState({ x: window.innerWidth - 400, y: 100 });
+  const [position, setPosition] = useState({ x: 0, y: 100 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   
-  // Add useEffect to handle window resize
+  // Initialize position after mount
   useEffect(() => {
-    const handleResize = () => {
-      setPosition(prev => ({
-        ...prev,
-        x: Math.min(prev.x, window.innerWidth - 400)
-      }));
-    };
+    if (typeof window !== 'undefined') {
+      setPosition({ 
+        x: window.innerWidth - 400, 
+        y: 100 
+      });
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+      const handleResize = () => {
+        setPosition(prev => ({
+          ...prev,
+          x: Math.min(prev.x, window.innerWidth - 400)
+        }));
+      };
+
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
   const popupRef = useRef(null);
@@ -69,7 +75,6 @@ export const MovableResumePopup = ({ onClose }) => {
     }
   }, [cvFiles]);
 
-  // Add and remove event listeners
   useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
